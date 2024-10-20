@@ -3,6 +3,9 @@ cache/
 out/
 .DS_Store
 
+# Solidity-exercises
+solidity-exercises
+
 # Ignores development broadcast logs
 !/broadcast
 /broadcast/*/31337/
