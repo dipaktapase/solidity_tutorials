@@ -5,6 +5,7 @@ out/
 .states
 
 /rareSkills-solidity-exercises/contracts/artifacts
+/solidity-exercises
 
 # Ignores development broadcast logs
 !/broadcast
