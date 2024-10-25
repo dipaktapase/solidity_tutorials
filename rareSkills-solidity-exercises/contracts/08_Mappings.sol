@@ -71,3 +71,78 @@ contract SpecialNumbers {
         return isSpecial[n];
     }
 }
+
+// Nested Mappings
+
+contract ExampleContract3 {
+    mapping(uint256 => mapping(uint256 => uint256)) public nestedMap;
+
+    function setNestedMap(
+        uint256 key1,
+        uint256 key2,
+        uint256 finalValue
+    ) public {
+        nestedMap[key1][key2] = finalValue;
+    }
+
+    function getNestedMap(uint256 key1, uint256 key2)
+        public
+        view
+        returns (uint256)
+    {
+        return nestedMap[key1][key2];
+    }
+}
+
+// You cannot iterate over the keys, declare them inside a function, or return them from a function.
+
+// Public Nested Mappings Don’t Work:- Solidity automatically creates getting functions for variables when you declare them as public.
+// However, the public getter functions allow you to supply the necessary arguments.
+// The solution is to make nested mappings private and wrap them in a public function that gets their value.
+
+// Exercise 1
+contract NestedMapping {
+    /* This exercise assumes you know how nested mappings work.
+        1. Create a public nested mapping of (address => uint256 => bool).
+        2. The name of the mapping must be `nestedBool`
+        3. Set the boolean value of the arguments to `true` in the 'setNestedDetails' function
+        4. use the 'returnNestedDetails' function to return the values of a nested data
+    */
+    mapping(address => mapping(uint256 => bool)) public nestedBool;
+
+    function setNestedDetails(address _addr, uint256 _num) public {
+        // your code here
+        nestedBool[_addr][_num] = true;
+    }
+
+    function returnNestedDetails(address _addr, uint256 _num)
+        public
+        view
+        returns (bool)
+    {
+        // your code here
+        return nestedBool[_addr][_num];
+    }
+}
+
+// Exercise 2
+contract TripleNestedMapping {
+    /* 
+        This exercise assumes you know how mappings work.
+        1. Create a public TRIPLE nested mapping of 
+           (string(_name) => uint256(_password) => uint256(_pin) => bool).
+        2. The name of the mapping must be `isLoggedIn` and it should be public.
+        3. Set the boolean value of the arguments to `true` in the 'setLogin' function.
+    */
+    mapping(string => mapping(uint256 => mapping(uint256 => bool)))
+        public isLoggedIn;
+
+    function setLogin(
+        string memory _name,
+        uint256 _password,
+        uint256 _pin
+    ) public {
+        // your code here
+        isLoggedIn[_name][_password][_pin] = true;
+    }
+}
